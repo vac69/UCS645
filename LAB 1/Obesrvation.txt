@@ -1,0 +1,25 @@
+QUESTION 1: DAXPY LOOP
+1. Performance improves as the number of threads increases up to the number of physical cores.
+2. The highest speedup is observed around 3–4 threads, after which gains start to diminish.
+3. When the thread count exceeds available physical cores, performance drops due to hyperthreading overhead.
+4. Additional threads introduce synchronization costs, cache contention, and memory access delays.
+5. Since the DAXPY operation is lightweight and memory-bound, parallel overhead dominates beyond optimal thread count.
+
+
+QUESTION 2: MATRIX MULTIPLICATION (1D vs 2D)
+1. The sequential approach uses three nested loops, leading to high computation time for large matrices.
+2. In 1D parallelization, rows are distributed among threads, resulting in relatively low overhead.
+3. The 2D parallel strategy distributes both rows and columns, improving workload balance.
+4. For a small number of threads, 1D parallelization performs better due to lower scheduling overhead.
+5. At higher thread counts, 2D parallelization slightly outperforms 1D because of improved load distribution.
+6. Overall scaling is limited by cache behavior and memory bandwidth constraints.
+
+
+QUESTION 3: PARALLEL CALCULATION OF PI
+1. Loop iterations are evenly divided among threads using OpenMP reduction to prevent race conditions.
+2. Speedup remains limited because the sequential execution time is already very small.
+3. Moderate improvement is seen up to the number of physical cores.
+4. Beyond this point, synchronization and reduction overhead outweigh parallel benefits.
+5. Minor performance fluctuations at higher thread counts are influenced by thread scheduling effects.
+
+
